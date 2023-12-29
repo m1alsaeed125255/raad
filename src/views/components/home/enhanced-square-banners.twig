@@ -22,3 +22,21 @@
         {% endfor %}
     </div>
 </section>
+<section class="s-block s-block--banners container">
+    <div class="grid {{ component.banners|length <= 3 ? 'md:grid-cols-' ~ component.banners|length : 'md:grid-cols-3 two-row' }} grid-flow-row gap-3 sm:gap-8">
+        {% for index, banner in component.banners %}
+            <div class="flex">
+                <a  href="{{banner.url}}" aria-label="{{banner.title ? banner.title : 'square-banner-' ~ index }}" class="banner-entry lazy {{banner.title ? 'has-overlay' : ''}} {{ component.banners|length <= 3 ? 'h-lg-banner' : 'h-banner' }}" data-bg="{{ banner.image }}" style="width: 674.5px; height: 300px; margin-right: 10px;">
+                    <article class="banner-entry__text text-with-border">
+                        <h3 class="banner__title font-bold mb-1 leading-6">{{banner.title}}</h3>
+                        <p class="banner__description">{{banner.description}}</p>
+                    </article>
+                </a>
+                {% if index + 1 < component.banners|length %}
+                    <!-- Add a separator or adjust spacing if needed -->
+                    <div style="width: 10px;"></div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</section>
